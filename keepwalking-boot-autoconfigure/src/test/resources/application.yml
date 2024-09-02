@@ -1,0 +1,14 @@
+keepwalking:
+  security:
+    web:
+      enabled: true
+      remote-ip:
+        enabled: true
+      remote-addr:
+        enabled: true
+      cors:
+        enabled: true
+      rate-limit:
+        enabled: true
+      http-header:
+        enabled: true
