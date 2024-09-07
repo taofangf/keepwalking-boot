@@ -26,11 +26,13 @@
         <version>${revision}</version>
         <relativePath>../keepwalking-boot-parent/pom.xml</relativePath>
     </parent>
-
     <artifactId>keepwalking-boot-starters</artifactId>
     <packaging>pom</packaging>
+    <name>Keepwalking Boot Starters</name>
+    <description>Keepwalking Boot Starters</description>
 
     <modules>
         <module>keepwalking-boot-starter</module>
+        <module>keepwalking-boot-starter-parent</module>
     </modules>
 </project>

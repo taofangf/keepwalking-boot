@@ -32,6 +32,8 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
 /**
+ * ServletWebSecurityAutoConfigurationTest
+ *
  * @author <a href="mailto:taofangf@gmail.com">Fangtao<a/>
  * @since 2024.08
  */
