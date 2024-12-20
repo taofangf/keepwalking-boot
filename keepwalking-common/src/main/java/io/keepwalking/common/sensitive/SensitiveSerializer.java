@@ -18,6 +18,7 @@
 package io.keepwalking.common.sensitive;
 
 import java.io.IOException;
+import java.util.concurrent.ConcurrentHashMap;
 
 import io.keepwalking.common.sensitive.annotation.Sensitive;
 
@@ -43,15 +44,29 @@ public class SensitiveSerializer extends StdSerializer<Object> implements Contex
      * 脱敏类型
      * {@link SensitiveType}
      */
-    private SensitiveType type;
+    private final SensitiveType type;
 
     /**
      * 指定的脱敏处理类
      */
-    private Class<? extends CustomSensitiveHandler> handler;
+    private final Class<? extends CustomSensitiveHandler> handler;
 
-    protected SensitiveSerializer() {
+    /**
+     * 处理器实例缓存
+     */
+    private static final ConcurrentHashMap<Class<? extends CustomSensitiveHandler>, CustomSensitiveHandler>
+            HANDLER_CACHE = new ConcurrentHashMap<>();
+
+    public SensitiveSerializer() {
         super(Object.class);
+        this.type = null;
+        this.handler = null;
+    }
+
+    protected SensitiveSerializer(SensitiveType type, Class<? extends CustomSensitiveHandler> handler) {
+        super(Object.class);
+        this.type = type;
+        this.handler = handler;
     }
 
     @Override
@@ -59,8 +74,7 @@ public class SensitiveSerializer extends StdSerializer<Object> implements Contex
         if (property != null) {
             Sensitive sensitive = property.getAnnotation(Sensitive.class);
             if (sensitive != null && sensitive.enabled()) {
-                this.type = sensitive.type();
-                this.handler = sensitive.handler();
+                return new SensitiveSerializer(sensitive.type(), sensitive.handler());
             }
         }
         return this;
@@ -74,19 +88,36 @@ public class SensitiveSerializer extends StdSerializer<Object> implements Contex
         }
         String input = value.toString();
         try {
-            String result;
-            if (SensitiveType.CUSTOM == type && handler != null) {
-                CustomSensitiveHandler customHandler = handler.getConstructor().newInstance();
-                result = customHandler.handle(input);
-            }
-            else {
-                result = type.handle(input);
-            }
+            String result = handleSensitive(input);
             gen.writeString(result);
         }
         catch (Exception e) {
             log.error("Sensitive serialization failed for value: {} with handler: {}", input, handler, e);
             gen.writeString(input);
         }
+    }
+
+    /**
+     * 执行脱敏处理逻辑
+     *
+     * @param input 原始输入
+     * @return 脱敏后的结果
+     */
+    private String handleSensitive(String input) {
+        if (type == null) {
+            return input;
+        }
+        if (SensitiveType.CUSTOM == type && handler != null) {
+            return HANDLER_CACHE.computeIfAbsent(handler, v -> {
+                try {
+                    return v.getDeclaredConstructor().newInstance();
+                }
+                catch (Exception e) {
+                    log.error("Failed to instantiate handler: {}", v, e);
+                    throw new IllegalStateException("Failed to instantiate handler", e);
+                }
+            }).handle(input);
+        }
+        return type.handle(input);
     }
 }
