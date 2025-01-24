@@ -15,22 +15,20 @@
  * limitations under the License.
  */
 
-package io.keepwalking.autoconfigure;
+package io.keepwalking.boot.autoconfigure.security.web.servlet;
 
-import lombok.Getter;
-import lombok.Setter;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * BaseConfig
+ * BootStrap
  *
  * @author <a href="mailto:taofangf@gmail.com">Fangtao<a/>
- * @since 2024.07
+ * @since 2024.08
  */
-@Getter
-@Setter
-public class BaseConfig {
-    /**
-     * enabled default value true
-     */
-    private boolean enabled = true;
+@SpringBootApplication
+public class App {
+    public static void main(String[] args) {
+        SpringApplication.run(App.class);
+    }
 }

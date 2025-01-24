@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package io.keepwalking.autoconfigure.security.web.servlet;
+package io.keepwalking.boot.autoconfigure.security.web.servlet;
 
 import java.util.concurrent.TimeUnit;
 

@@ -15,20 +15,21 @@
  * limitations under the License.
  */
 
-package io.keepwalking.autoconfigure.security.web.servlet;
+package io.keepwalking.boot.autoconfigure.security.web.servlet;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.util.regex.Pattern;
+import org.junit.jupiter.api.Test;
 
 /**
- * BootStrap
+ * PatternTest
  *
  * @author <a href="mailto:taofangf@gmail.com">Fangtao<a/>
  * @since 2024.08
  */
-@SpringBootApplication
-public class App {
-    public static void main(String[] args) {
-        SpringApplication.run(App.class);
+public class RemoteAddrPatternTest {
+    @Test
+    void patternTest() {
+        Pattern allow = Pattern.compile("127\\.\\d+\\.\\d+\\.\\d+|::1|0:0:0:0:0:0:0:1");
+        System.out.println(allow.matcher("127.0.0.1").matches());
     }
 }

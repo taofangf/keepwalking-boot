@@ -15,29 +15,29 @@
  * limitations under the License.
  */
 
-package io.keepwalking.autoconfigure.condition;
+package io.keepwalking.boot.autoconfigure.security.web.servlet;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.util.HashMap;
+import java.util.Map;
 
+import static io.keepwalking.boot.autoconfigure.Constants.WEB_SECURITY_FILTERS_PROPERTY_NAME_PREFIX;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-
-import static io.keepwalking.autoconfigure.Constants.PROPERTY_NAME_ENABLED;
-import static io.keepwalking.autoconfigure.Constants.WEB_SECURITY_PROPERTY_NAME_PREFIX;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * ConditionOnEnabledWebSecurity
+ * FilterOrderProperties
  *
  * @author <a href="mailto:taofangf@gmail.com">Fangtao<a/>
- * @since 2024.07
+ * @since 2024.08
  */
-@Target({ElementType.TYPE, ElementType.METHOD})
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
-@ConditionOnEnabledSecurity
-@ConditionalOnProperty(prefix = WEB_SECURITY_PROPERTY_NAME_PREFIX, name = PROPERTY_NAME_ENABLED, matchIfMissing = true)
-public @interface ConditionOnEnabledWebSecurity {}
+@Getter
+@Setter
+@ConfigurationProperties(prefix = WEB_SECURITY_FILTERS_PROPERTY_NAME_PREFIX)
+public class FilterOrderProperties {
+    /**
+     * FilterOrder
+     */
+    private Map<String, Integer> order = new HashMap<>();
+}

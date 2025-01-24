@@ -15,29 +15,22 @@
  * limitations under the License.
  */
 
-package io.keepwalking.autoconfigure.security.web.servlet;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static io.keepwalking.autoconfigure.Constants.WEB_SECURITY_FILTERS_PROPERTY_NAME_PREFIX;
+package io.keepwalking.boot.autoconfigure;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * FilterOrderProperties
+ * BaseConfig
  *
  * @author <a href="mailto:taofangf@gmail.com">Fangtao<a/>
- * @since 2024.08
+ * @since 2024.07
  */
 @Getter
 @Setter
-@ConfigurationProperties(prefix = WEB_SECURITY_FILTERS_PROPERTY_NAME_PREFIX)
-public class FilterOrderProperties {
+public class BaseConfig {
     /**
-     * FilterOrder
+     * enabled default value true
      */
-    private Map<String, Integer> order = new HashMap<>();
+    private boolean enabled = true;
 }

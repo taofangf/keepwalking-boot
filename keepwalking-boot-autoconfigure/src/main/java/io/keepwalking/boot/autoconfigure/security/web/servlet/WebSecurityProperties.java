@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package io.keepwalking.autoconfigure.security.web.servlet;
+package io.keepwalking.boot.autoconfigure.security.web.servlet;
 
-import io.keepwalking.autoconfigure.BaseConfig;
+import io.keepwalking.boot.autoconfigure.BaseConfig;
 
-import static io.keepwalking.autoconfigure.Constants.WEB_SECURITY_PROPERTY_NAME_PREFIX;
+import static io.keepwalking.boot.autoconfigure.Constants.WEB_SECURITY_PROPERTY_NAME_PREFIX;
 
 import lombok.Getter;
 import lombok.Setter;

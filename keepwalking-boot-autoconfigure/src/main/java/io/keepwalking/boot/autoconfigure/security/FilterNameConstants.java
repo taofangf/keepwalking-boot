@@ -15,24 +15,37 @@
  * limitations under the License.
  */
 
-package io.keepwalking.autoconfigure.security.web.servlet;
-
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+package io.keepwalking.boot.autoconfigure.security;
 
 /**
- * SecurityTestController
+ * FilterNameConstants
  *
  * @author <a href="mailto:taofangf@gmail.com">Fangtao<a/>
  * @since 2024.08
  */
-@Slf4j
-@RestController
-public class SecurityTestController {
-    @PostMapping("/test-endpoint")
-    public String testEndpoint() {
-        log.info("test-endpoint");
-        return "SUCCESS";
-    }
+public interface FilterNameConstants {
+    /**
+     * remoteIpFilter
+     */
+    String REMOTE_IP_FILTER = "remoteIpFilter";
+
+    /**
+     * remoteAddrFilter
+     */
+    String REMOTE_ADDR_FILTER = "remoteAddrFilter";
+
+    /**
+     * corsFilter
+     */
+    String CORS_FILTER = "corsFilter";
+
+    /**
+     * rateLimitFilter
+     */
+    String RATE_LIMIT_FILTER = "rateLimitFilter";
+
+    /**
+     * httpHeadSecurityFilter
+     */
+    String HTTP_HEAD_SECURITY_FILTER = "httpHeadSecurityFilter";
 }

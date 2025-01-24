@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package io.keepwalking.autoconfigure.security;
+package io.keepwalking.boot.autoconfigure.security;
 
 /**
  * SecurityConfigConstants

@@ -15,20 +15,28 @@
  * limitations under the License.
  */
 
-package io.keepwalking.autoconfigure;
+package io.keepwalking.boot.autoconfigure.condition;
 
-import io.keepwalking.autoconfigure.security.FilterNameConstants;
-import io.keepwalking.autoconfigure.security.SecurityConfigConstants;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import static io.keepwalking.boot.autoconfigure.Constants.PROPERTY_NAME_ENABLED;
+import static io.keepwalking.boot.autoconfigure.Constants.WEB_SECURITY_PROPERTY_NAME_PREFIX;
+
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 /**
- * SecurityConstants
+ * ConditionOnEnabledWebSecurity
  *
  * @author <a href="mailto:taofangf@gmail.com">Fangtao<a/>
  * @since 2024.07
  */
-public interface Constants extends SecurityConfigConstants, FilterNameConstants {
-    /**
-     * enabled
-     */
-    String PROPERTY_NAME_ENABLED = "enabled";
-}
+@Target({ElementType.TYPE, ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@ConditionOnEnabledSecurity
+@ConditionalOnProperty(prefix = WEB_SECURITY_PROPERTY_NAME_PREFIX, name = PROPERTY_NAME_ENABLED, matchIfMissing = true)
+public @interface ConditionOnEnabledWebSecurity {}

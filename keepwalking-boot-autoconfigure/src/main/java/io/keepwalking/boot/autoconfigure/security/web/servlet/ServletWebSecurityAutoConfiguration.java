@@ -15,23 +15,23 @@
  * limitations under the License.
  */
 
-package io.keepwalking.autoconfigure.security.web.servlet;
+package io.keepwalking.boot.autoconfigure.security.web.servlet;
 
 import java.util.Optional;
 
-import io.keepwalking.autoconfigure.condition.ConditionOnEnabledWebSecurity;
+import io.keepwalking.boot.autoconfigure.condition.ConditionOnEnabledWebSecurity;
 
-import static io.keepwalking.autoconfigure.Constants.PROPERTY_NAME_ENABLED;
-import static io.keepwalking.autoconfigure.Constants.WEB_SECURITY_CORS_PROPERTY_NAME_PREFIX;
-import static io.keepwalking.autoconfigure.Constants.WEB_SECURITY_HTTP_HEADER_PROPERTY_NAME_PREFIX;
-import static io.keepwalking.autoconfigure.Constants.WEB_SECURITY_RATE_LIMIT_PROPERTY_NAME_PREFIX;
-import static io.keepwalking.autoconfigure.Constants.WEB_SECURITY_REMOTE_ADDR_PROPERTY_NAME_PREFIX;
-import static io.keepwalking.autoconfigure.Constants.WEB_SECURITY_REMOTE_IP_PROPERTY_NAME_PREFIX;
-import static io.keepwalking.autoconfigure.security.FilterNameConstants.CORS_FILTER;
-import static io.keepwalking.autoconfigure.security.FilterNameConstants.HTTP_HEAD_SECURITY_FILTER;
-import static io.keepwalking.autoconfigure.security.FilterNameConstants.RATE_LIMIT_FILTER;
-import static io.keepwalking.autoconfigure.security.FilterNameConstants.REMOTE_ADDR_FILTER;
-import static io.keepwalking.autoconfigure.security.FilterNameConstants.REMOTE_IP_FILTER;
+import static io.keepwalking.boot.autoconfigure.Constants.PROPERTY_NAME_ENABLED;
+import static io.keepwalking.boot.autoconfigure.Constants.WEB_SECURITY_CORS_PROPERTY_NAME_PREFIX;
+import static io.keepwalking.boot.autoconfigure.Constants.WEB_SECURITY_HTTP_HEADER_PROPERTY_NAME_PREFIX;
+import static io.keepwalking.boot.autoconfigure.Constants.WEB_SECURITY_RATE_LIMIT_PROPERTY_NAME_PREFIX;
+import static io.keepwalking.boot.autoconfigure.Constants.WEB_SECURITY_REMOTE_ADDR_PROPERTY_NAME_PREFIX;
+import static io.keepwalking.boot.autoconfigure.Constants.WEB_SECURITY_REMOTE_IP_PROPERTY_NAME_PREFIX;
+import static io.keepwalking.boot.autoconfigure.security.FilterNameConstants.CORS_FILTER;
+import static io.keepwalking.boot.autoconfigure.security.FilterNameConstants.HTTP_HEAD_SECURITY_FILTER;
+import static io.keepwalking.boot.autoconfigure.security.FilterNameConstants.RATE_LIMIT_FILTER;
+import static io.keepwalking.boot.autoconfigure.security.FilterNameConstants.REMOTE_ADDR_FILTER;
+import static io.keepwalking.boot.autoconfigure.security.FilterNameConstants.REMOTE_IP_FILTER;
 import static org.apache.catalina.filters.CorsFilter.PARAM_CORS_ALLOWED_HEADERS;
 import static org.apache.catalina.filters.CorsFilter.PARAM_CORS_ALLOWED_METHODS;
 import static org.apache.catalina.filters.CorsFilter.PARAM_CORS_ALLOWED_ORIGINS;

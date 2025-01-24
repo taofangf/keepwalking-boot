@@ -15,21 +15,27 @@
  * limitations under the License.
  */
 
-package io.keepwalking.autoconfigure.security.web.servlet;
+package io.keepwalking.boot.autoconfigure.condition;
 
-import java.util.regex.Pattern;
-import org.junit.jupiter.api.Test;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import static io.keepwalking.boot.autoconfigure.Constants.PROPERTY_NAME_ENABLED;
+import static io.keepwalking.boot.autoconfigure.Constants.PROPERTY_NAME_PREFIX;
+
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 /**
- * PatternTest
+ * ConditionOnEnabledSecurity
  *
  * @author <a href="mailto:taofangf@gmail.com">Fangtao<a/>
- * @since 2024.08
+ * @since 2024.07
  */
-public class RemoteAddrPatternTest {
-    @Test
-    void patternTest() {
-        Pattern allow = Pattern.compile("127\\.\\d+\\.\\d+\\.\\d+|::1|0:0:0:0:0:0:0:1");
-        System.out.println(allow.matcher("127.0.0.1").matches());
-    }
-}
+@Target({ElementType.TYPE, ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@ConditionalOnProperty(prefix = PROPERTY_NAME_PREFIX, name = PROPERTY_NAME_ENABLED)
+public @interface ConditionOnEnabledSecurity {}
